@@ -1,0 +1,50 @@
+class Auto {
+    #velocidadMaxima;
+    #combustibleActual;
+
+    constructor(marca, modelo, velocidadMaxima) {
+        this.marca = marca;
+        this.modelo = modelo;
+        this.#velocidadMaxima = velocidadMaxima;
+        this.#combustibleActual = 100; // Combustible de inicio
+        this.velocidadActual = 0; // Velocidad de inicio
+    }
+
+    acelerar() {
+        if (this.#combustibleActual > 0) {
+            this.velocidadActual = Math.min(this.velocidadActual + 400, this.#velocidadMaxima); // Velocidad mazima 
+            this.#combustibleActual -= 10;
+        } else {
+            console.log("Hace falta combustible para acelerar.");
+        }
+    }
+
+    frenar() {
+        this.velocidadActual = Math.max(this.velocidadActual - 10, 0);
+    }
+
+    recargarCombustible(cantidad) {
+        this.#combustibleActual = Math.min(this.#combustibleActual + cantidad, 100);
+    }
+
+    mostrarEstado() {
+        return `Marca: ${this.marca}
+                Modelo: ${this.modelo}
+                Velocidad Máxima: ${this.#velocidadMaxima} km/h
+                Combustible Actual: ${this.#combustibleActual}%
+                Velocidad Actual: ${this.velocidadActual} km/h`;
+    }
+}
+
+// Instancias
+const auto1 = new Auto("Ferri", "Enzo", 300);
+
+console.log(auto1.mostrarEstado());
+auto1.acelerar();
+console.log(auto1.mostrarEstado());
+auto1.acelerar();
+console.log(auto1.mostrarEstado());
+auto1.frenar();
+console.log(auto1.mostrarEstado());
+auto1.recargarCombustible(20);
+console.log(auto1.mostrarEstado());

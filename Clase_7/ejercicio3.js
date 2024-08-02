@@ -1,36 +1,38 @@
-class Casa{
+class Casa {
     constructor(direccion) {
         this.direccion = direccion;
-        this.habitaciones = []
+        this.habitaciones = [];
     }
 
-    agregarHabitacion(habitacion) {
-        let habitacion = new Habitaciones(nombre, superficie)
-        this.habitaciones.push(habitacion)
+    agregarHabitacion(nombre, superficie) {
+        let habitacion = new Habitacion(nombre, superficie);
+        this.habitaciones.push(habitacion);
     }
 
     mostrarInformacion() {
-        let datosh = "";
+        let datosHabitaciones = "";
         for (let i = 0; i < this.habitaciones.length; i++) {
-            datosh+=this.habitaciones[i].nombre;
+            datosHabitaciones += this.habitaciones[i].mostrarInformacion() + "\n";
         }
-        return `La habitación ${this.direccion} tiene una superficie de ${this.datosh}`
-        
+        return `La casa en ${this.direccion} tiene las siguientes habitaciones:\n${datosHabitaciones}`;
     }
 }
 
-class Habitaciones{
+class Habitacion {
     constructor(nombre, superficie) {
         this.nombre = nombre;
         this.superficie = superficie;
     }
 
     mostrarInformacion() {
-        return `Departamento: ${this.nombre}, Codigo: ${this.codigo}`
+        return `Habitación: ${this.nombre}, Superficie: ${this.superficie}m2`;
     }
-
 }
 
-let casa1 = new Habitaciones('Habitacion', 'Calle 78')
-casa1.agregarHabitacion('departamento', '213')
-console.log(casa1.mostrarInformacion())
+// Instancias
+let casa1 = new Casa('Calle 78');
+casa1.agregarHabitacion('Sala', 20);
+casa1.agregarHabitacion('Cocina', 15);
+casa1.agregarHabitacion('Dormitorio', 25);
+
+console.log(casa1.mostrarInformacion());
